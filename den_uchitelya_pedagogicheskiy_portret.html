@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Педагогический портрет — День учителя</title>
+<style>
+:root{--ink:#302b43;--muted:#7c748e;--purple:#9870df;--gold:#e5ad59;--pink:#e995b4;--blue:#79b9df}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);
+background:radial-gradient(circle at 12% 10%,#ffe6a9 0,transparent 26%),radial-gradient(circle at 90% 75%,#dcc8ff 0,transparent 30%),linear-gradient(135deg,#fffaf0,#f8f1ff 50%,#eef8ff);overflow-x:hidden}
+button{font:inherit}
+.page{width:min(1050px,94vw);margin:30px auto 50px}
+.screen{display:none;animation:in .65s ease both}.screen.active{display:block}
+@keyframes in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.glass{background:rgba(255,255,255,.7);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.9);box-shadow:0 28px 80px rgba(72,55,100,.15),inset 0 1px #fff;border-radius:36px}
+.hero{min-height:78vh;display:grid;place-items:center;text-align:center;padding:55px 25px;position:relative;overflow:hidden}
+.hero h1{font-size:clamp(42px,8vw,82px);line-height:.95;margin:15px 0;letter-spacing:-3px}
+.hero p{max-width:650px;margin:0 auto;color:var(--muted);font-size:18px;line-height:1.6}
+.eyebrow{display:inline-flex;padding:9px 15px;border-radius:999px;background:#fff8df;color:#9a7132;font-weight:800;font-size:13px}
+.cta{border:0;border-radius:999px;padding:15px 25px;margin-top:28px;color:white;font-weight:850;cursor:pointer;background:linear-gradient(105deg,#8b67dc,#b16cdd,#e4a452);box-shadow:0 14px 30px rgba(139,103,220,.25);transition:.2s}
+.cta:hover{transform:translateY(-2px);box-shadow:0 18px 35px rgba(139,103,220,.32)}
+.decor{position:absolute;font-size:32px;opacity:.7;animation:float 4s ease-in-out infinite}.d1{left:8%;top:18%}.d2{right:9%;top:27%;animation-delay:.8s}.d3{left:14%;bottom:18%;animation-delay:1.4s}.d4{right:14%;bottom:13%;animation-delay:2s}
+@keyframes float{50%{transform:translateY(-12px) rotate(9deg)}}
+
+
+.quiz{padding:35px;max-width:850px;margin:auto}
+.top{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.progress{height:9px;background:#eee9f5;border-radius:99px;overflow:hidden;margin:18px 0 30px}.bar{height:100%;width:0;background:linear-gradient(90deg,#8d68dc,#e4a451);transition:.4s}
+.count{color:var(--muted);font-weight:800;font-size:14px}
+.question{font-size:clamp(24px,4vw,35px);line-height:1.2;margin:15px 0 28px;letter-spacing:-.6px}
+.options{display:grid;gap:13px}.option{position:relative;border:1px solid #e9e3f1;background:rgba(255,255,255,.8);padding:17px 18px;border-radius:20px;text-align:left;cursor:pointer;color:var(--ink);transition:.2s}
+.option:hover{transform:translateX(4px);border-color:#c5aceb;box-shadow:0 9px 22px rgba(90,67,120,.08)}
+.option.selected{border-color:#9a71df;background:#f5efff;box-shadow:0 0 0 3px rgba(154,113,223,.1)}
+.option b{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:10px;background:#f0e9fa;color:#7955bd;margin-right:10px}
+.nextrow{text-align:right}.nextrow .cta{margin-top:22px}
+.result{padding:35px 25px 45px;text-align:center;overflow:hidden;position:relative}
+.result h2{font-size:clamp(34px,6vw,54px);margin:8px 0 5px;letter-spacing:-2px}
+.result .lead{color:var(--muted);max-width:680px;margin:0 auto;line-height:1.6}
+.chart-wrap{width:min(650px,95vw);aspect-ratio:1;margin:5px auto -5px}
+svg{width:100%;height:100%;overflow:visible}
+.grid{fill:none;stroke:rgba(83,70,111,.12);stroke-width:1.5}.axis{stroke:rgba(83,70,111,.1)}
+.area{fill:url(#area);stroke:#9a70df;stroke-width:4;stroke-linejoin:round;filter:url(#glow);stroke-dasharray:1200;stroke-dashoffset:1200;animation:draw 1.8s cubic-bezier(.2,.8,.2,1) .2s forwards}
+.dot{fill:white;stroke:#9a70df;stroke-width:4;filter:url(#glow);transform-box:fill-box;transform-origin:center;animation:pop .5s backwards}
+.label{font-size:15px;font-weight:800;fill:#4e4760}.value{font-size:12px;font-weight:800;fill:#9a70df}
+.center{fill:rgba(255,255,255,.92);stroke:rgba(154,112,223,.18);stroke-width:2}.centerTitle{font-size:14px;font-weight:900;fill:#5b526e}.centerSmall{font-size:11px;fill:#8d859c}
+@keyframes draw{to{stroke-dashoffset:0}}@keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.25)}100%{transform:scale(1)}}
+.strengths{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:850px;margin:0 auto}
+.strength{background:rgba(255,255,255,.75);border:1px solid #eee7f4;border-radius:20px;padding:16px;text-align:left}
+.strength strong{display:flex;justify-content:space-between;gap:10px}.meter{height:7px;border-radius:99px;background:#eee9f5;margin-top:10px;overflow:hidden}.meter i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#9a70df,#e3aa57)}
+.message{max-width:760px;margin:20px auto 0;padding:22px;border-radius:24px;background:linear-gradient(135deg,rgba(255,248,224,.85),rgba(246,238,255,.9));line-height:1.65}
+@media(max-width:700px){.quiz{padding:25px 18px}.strengths{grid-template-columns:1fr}.hero{min-height:72vh}.chart-wrap{margin-top:0}.label{font-size:13px}.value{font-size:11px}}
+
+
+/* Праздничное окно поздравления */
+.greeting-overlay{
+  position:fixed; inset:0; display:none; place-items:center; padding:18px;
+  background:
+    radial-gradient(circle at 20% 20%,rgba(255,222,145,.16),transparent 22%),
+    radial-gradient(circle at 80% 75%,rgba(199,161,255,.18),transparent 25%),
+    rgba(39,29,54,.48);
+  backdrop-filter:blur(12px);
+  z-index:1000;
+}
+.greeting-overlay.show{display:grid}
+.greeting-modal{
+  position:relative; width:min(650px,95vw); overflow:hidden;
+  border-radius:34px; text-align:center;
+  padding:42px 34px 30px;
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.985),rgba(249,243,255,.985)),
+    #fff;
+  border:1px solid rgba(255,255,255,.95);
+  box-shadow:0 40px 110px rgba(31,21,48,.34),0 0 0 1px rgba(160,121,221,.08);
+  animation:modalIn .5s cubic-bezier(.2,.9,.25,1.12);
+}
+.greeting-modal:before{
+  content:""; position:absolute; width:310px; height:310px; border-radius:50%;
+  top:-175px; left:-120px;
+  background:radial-gradient(circle,#f8d98f 0,rgba(248,217,143,.35) 38%,transparent 70%);
+}
+.greeting-modal:after{
+  content:""; position:absolute; width:300px; height:300px; border-radius:50%;
+  right:-120px; bottom:-175px;
+  background:radial-gradient(circle,#cdb0fb 0,rgba(205,176,251,.32) 40%,transparent 72%);
+}
+.greeting-ribbon{
+  position:absolute; top:15px; right:18px;
+  padding:7px 12px; border-radius:999px;
+  background:rgba(255,248,224,.92); color:#987235;
+  font-size:11px; font-weight:900; letter-spacing:.08em; text-transform:uppercase;
+}
+.greeting-content{position:relative;z-index:2}
+.greeting-flower{
+  width:70px;height:70px;margin:0 auto 14px; display:grid;place-items:center;
+  border-radius:24px;
+  background:linear-gradient(145deg,#fff9df,#f3e8ff);
+  box-shadow:0 12px 28px rgba(106,80,137,.12),inset 0 1px #fff;
+  font-size:38px; line-height:1;
+}
+.greeting-modal h3{
+  margin:0 0 12px; font-size:clamp(30px,6vw,44px);
+  letter-spacing:-1.5px; color:#362d49;
+}
+.greeting-subtitle{
+  display:inline-block;margin:0 0 10px;color:#a17c3e;font-weight:850;font-size:13px;
+}
+.greeting-modal p{
+  max-width:535px;margin:11px auto;color:#6b6378;
+  font-size:16px;line-height:1.72;
+}
+.greeting-quote{
+  max-width:540px;margin:19px auto 0;padding:16px 18px;border-radius:20px;
+  background:linear-gradient(135deg,rgba(247,239,255,.9),rgba(255,249,227,.9));
+  border:1px solid rgba(155,116,219,.1);
+  color:#5c4c74!important;font-weight:750;
+}
+.greeting-actions{
+  display:flex; justify-content:center; gap:11px; flex-wrap:wrap; margin-top:23px;
+}
+.greeting-action{
+  border:0; border-radius:999px; padding:13px 22px;
+  font-weight:850; cursor:pointer; transition:.2s; min-width:150px;
+}
+.greeting-action.primary{
+  color:#fff;
+  background:linear-gradient(105deg,#8b67dc,#b16cdd,#e4a452);
+  box-shadow:0 13px 28px rgba(139,103,220,.24);
+}
+.greeting-action.secondary{
+  color:#725a91; background:#f0e8fa;
+}
+.greeting-action:hover{transform:translateY(-2px)}
+.greeting-note{
+  margin-top:13px!important; font-size:12px!important; color:#9a92a4!important;
+}
+.greeting-close-x{
+  position:absolute; top:17px; left:17px; z-index:3;
+  width:36px;height:36px;border:0;border-radius:50%;
+  background:rgba(255,255,255,.72);color:#8d8299;font-size:19px;
+  cursor:pointer;box-shadow:0 5px 16px rgba(66,49,84,.09);
+}
+.greeting-close-x:hover{background:#fff;transform:scale(1.04)}
+@keyframes modalIn{
+  from{opacity:0;transform:translateY(25px) scale(.94) rotate(-.4deg)}
+  to{opacity:1;transform:none}
+}
+}
+
+</style>
+</head>
+<body>
+<main class="page">
+
+<section id="start" class="screen active glass hero">
+  <div class="decor d1">✦</div><div class="decor d2">✧</div><div class="decor d3">✦</div><div class="decor d4">✧</div>
+  <div>
+    <div class="eyebrow">🌷 Интерактивное поздравление ко Дню учителя</div>
+    <h1>Ваш<br>педагогический<br>портрет</h1>
+    <p>12 небольших ситуаций помогут увидеть ваши сильные стороны как учителя — не в баллах, а в том, что делает ваш стиль преподавания особенным.</p>
+    <button class="cta" onclick="startQuiz()">Начать тестирование ✨</button>
+  </div>
+</section>
+
+<section id="quiz" class="screen glass quiz">
+  <div class="top"><strong>Педагогический портрет</strong><span class="count" id="count">1 / 12</span></div>
+  <div class="progress"><div class="bar" id="bar"></div></div>
+  <div class="question" id="question"></div>
+  <div class="options" id="options"></div>
+  <div class="nextrow"><button class="cta" id="next" disabled onclick="nextQuestion()">Далее →</button></div>
+</section>
+
+<section id="result" class="screen glass result">
+  <div class="eyebrow">✨ Ваш результат</div>
+  <h2>Ваш педагогический портрет</h2>
+  <p class="lead" id="resultLead"></p>
+  <div class="chart-wrap">
+    <svg viewBox="0 0 700 700">
+      <defs>
+        <radialGradient id="area" cx="50%" cy="45%"><stop offset="0" stop-color="#d8b7ff" stop-opacity=".75"/><stop offset=".7" stop-color="#ae83eb" stop-opacity=".30"/><stop offset="1" stop-color="#f0bb70" stop-opacity=".16"/></radialGradient>
+        <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <g id="radarGrid"></g><g id="radarArea"></g><g id="radarLabels"></g>
+    </svg>
+  </div>
+  <div class="strengths" id="strengths"></div>
+  <div class="message" id="message"></div>
+  <button id="greetingBtn" class="cta" onclick="celebrate()">Получить праздничное поздравление 🎁</button>
+</section>
+
+
+
+
+<div class="greeting-overlay" id="greetingOverlay" role="dialog" aria-modal="true" aria-labelledby="greetingTitle">
+  <div class="greeting-modal">
+    <button class="greeting-close-x" onclick="closeGreeting()" aria-label="Закрыть">×</button>
+    <div class="greeting-ribbon">День учителя</div>
+    <div class="greeting-content">
+      <div class="greeting-flower">🌷</div>
+      <div class="greeting-subtitle">Небольшая открытка для вас</div>
+      <h3 id="greetingTitle">С Днём учителя! ✨</h3>
+      <p>От всей души поздравляю вас с Днём учителя! Я хочу пожелать вам много радости, вдохновения и тёплых моментов, которые будут напоминать, насколько важен ваш труд.</p>
+      <p>Я желаю вам благодарных учеников, уважения коллег и искренних слов признательности. Пусть ваши знания, доброта и терпение возвращаются к вам в самых приятных и неожиданных формах.</p>
+      <p>Пусть каждый новый день приносит вам повод улыбнуться, гордиться своими учениками и радоваться тому, что вы делаете. И пусть даже самые сложные дни заканчиваются ощущением: «Я сегодня действительно сделал(а) что-то важное».</p>
+      <p class="greeting-quote">«Я желаю вам никогда не забывать, сколько света, знаний и уверенности в себе вы дарите другим». 💐</p>
+      <p class="greeting-note">С теплом и благодарностью от меня — за ваш труд, ваше терпение, ваше большое сердце и за то, что вы каждый день помогаете другим становиться лучше. ❤️</p>
+      <div class="greeting-actions">
+        <button class="greeting-action primary" onclick="restartFromGreeting()">Пройти ещё раз 🔄</button>
+        <button class="greeting-action secondary" onclick="closeGreeting()">Закрыть</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+<script>
+const traits=[
+ {name:"Коммуникация",icon:"💬",desc:"Вы умеете выстраивать живой контакт и находить понятный язык с учениками."},
+ {name:"Эмпатия",icon:"❤️",desc:"Вы тонко замечаете состояние детей и умеете поддержать в нужный момент."},
+ {name:"Креативность",icon:"💡",desc:"Вы способны превращать обычный урок в пространство для идей, экспериментов и открытий."},
+ {name:"Организация",icon:"🧭",desc:"Вы умеете держать структуру, ритм и атмосферу класса одновременно."},
+ {name:"Мотивация",icon:"🚀",desc:"Вы умеете зажигать интерес и помогать ученикам поверить в собственные силы."},
+ {name:"Развитие",icon:"🌱",desc:"Вы открыты новому и постоянно ищете способы расти вместе со своими учениками."}
+];
+
+const questions=[
+ {q:"Ученик не понимает тему, хотя вы уже объяснили её дважды. Что вы скорее сделаете?",a:[
+ ["Попробую объяснить через другой пример или образ.","Коммуникация","Креативность"],
+ ["Спрошу, на каком моменте возникло затруднение.","Эмпатия","Коммуникация"],
+ ["Дам несколько минут и вернусь к вопросу позже.","Организация","Развитие"],
+ ["Предложу ученику самому попробовать другой способ решения.","Мотивация","Развитие"]]},
+ {q:"В классе заметно снизилась энергия. Ваш первый шаг?",a:[
+ ["Изменю формат работы и добавлю элемент игры.","Креативность","Мотивация"],
+ ["Попробую понять, почему ребята устали.","Эмпатия","Коммуникация"],
+ ["Сделаю короткую паузу и перестрою план урока.","Организация","Эмпатия"],
+ ["Дам задачу, где каждый сможет проявить себя.","Мотивация","Креативность"]]},
+ {q:"Ученик боится отвечать у доски. Как вы поддержите его?",a:[
+ ["Начну с простого вопроса, чтобы дать опыт успеха.","Мотивация","Эмпатия"],
+ ["Предложу выбрать удобный формат ответа.","Эмпатия","Коммуникация"],
+ ["Попросю подготовить маленькую часть задания.","Организация","Мотивация"],
+ ["Превращу ответ в небольшой творческий эксперимент.","Креативность","Мотивация"]]},
+ {q:"Вам дали новую тему, которую нужно преподавать уже на следующей неделе.",a:[
+ ["Ищу новые материалы и пробую незнакомые методы.","Развитие","Креативность"],
+ ["Составляю подробный план и распределяю время.","Организация","Развитие"],
+ ["Думаю, как сделать тему понятной именно моему классу.","Коммуникация","Эмпатия"],
+ ["Придумываю необычный вход в тему.","Креативность","Мотивация"]]},
+ {q:"Родитель приходит с вопросом о результатах ребёнка.",a:[
+ ["Сначала внимательно выслушаю и уточню ожидания.","Коммуникация","Эмпатия"],
+ ["Покажу конкретные примеры работ и следующий шаг.","Организация","Коммуникация"],
+ ["Предложу несколько вариантов поддержки ребёнка.","Эмпатия","Развитие"],
+ ["Подчеркну прогресс и точки роста, чтобы сохранить мотивацию.","Мотивация","Эмпатия"]]},
+ {q:"На уроке неожиданно появляется очень интересный вопрос вне темы.",a:[
+ ["Отложу его на исследование вместе с классом.","Развитие","Креативность"],
+ ["Свяжу вопрос с текущей темой прямо сейчас.","Креативность","Коммуникация"],
+ ["Зафиксирую вопрос и вернусь к нему в подходящий момент.","Организация","Развитие"],
+ ["Попрошу класс высказать свои версии.","Мотивация","Коммуникация"]]},
+ {q:"После контрольной часть учеников расстроена результатами.",a:[
+ ["Помогу увидеть конкретный прогресс, а не только ошибки.","Мотивация","Эмпатия"],
+ ["Разберу типичные ошибки понятным способом.","Коммуникация","Организация"],
+ ["Предложу повторную попытку с другой стратегией.","Развитие","Мотивация"],
+ ["Сделаю совместный разбор в необычном формате.","Креативность","Коммуникация"]]},
+ {q:"У вас осталось 10 минут до конца урока, но план ещё не завершён.",a:[
+ ["Выбираю самое важное и спокойно сокращаю второстепенное.","Организация","Развитие"],
+ ["Придумываю быстрый интерактивный способ закрепить главное.","Креативность","Организация"],
+ ["Спрашиваю класс, что осталось непонятным.","Коммуникация","Эмпатия"],
+ ["Завершаю урок вопросом, который оставляет интерес к теме.","Мотивация","Креативность"]]},
+ {q:"Как вы чаще всего понимаете, что ученикам действительно интересно?",a:[
+ ["По вопросам и живой реакции во время урока.","Коммуникация","Эмпатия"],
+ ["По тому, что они начинают самостоятельно пробовать.","Мотивация","Развитие"],
+ ["По активности в необычных заданиях.","Креативность","Мотивация"],
+ ["По выполнению этапов и качеству результата.","Организация","Развитие"]]},
+ {q:"Коллега предлагает новый педагогический инструмент.",a:[
+ ["Сразу хочу попробовать его на практике.","Развитие","Креативность"],
+ ["Сначала изучаю, как он работает и для чего подходит.","Организация","Развитие"],
+ ["Думаю, как он будет восприниматься конкретными учениками.","Эмпатия","Коммуникация"],
+ ["Представляю, как с его помощью можно увлечь класс.","Мотивация","Креативность"]]},
+ {q:"Ученик неожиданно предлагает решение, которого нет в вашем плане.",a:[
+ ["Прошу объяснить его ход мысли и обсуждаю с классом.","Коммуникация","Развитие"],
+ ["Использую идею как отправную точку для нового задания.","Креативность","Мотивация"],
+ ["Проверяю решение и связываю его с целью урока.","Организация","Коммуникация"],
+ ["Поддерживаю инициативу, даже если решение нестандартное.","Эмпатия","Мотивация"]]},
+ {q:"Какое ощущение вам особенно важно оставить у ученика после урока?",a:[
+ ["«Я понял, что у меня получится».","Мотивация","Эмпатия"],
+ ["«Теперь я умею объяснить это своими словами».","Коммуникация","Развитие"],
+ ["«Я сегодня открыл что-то неожиданное».","Креативность","Развитие"],
+ ["«Я знаю, что делать дальше».","Организация","Мотивация"]]}
+];
+
+let current=0, answers=[], scores={};
+const $=id=>document.getElementById(id);
+
+function startQuiz(){current=0;answers=[];scores={};$("start").classList.remove("active");$("quiz").classList.add("active");renderQuestion()}
+function renderQuestion(){
+ const item=questions[current]; $("count").textContent=`${current+1} / ${questions.length}`;
+ $("bar").style.width=`${current/questions.length*100}%`; $("question").textContent=item.q;
+ $("options").innerHTML="";$("next").disabled=true;
+ item.a.forEach((x,i)=>{const b=document.createElement("button");b.className="option";b.innerHTML=`<b>${String.fromCharCode(65+i)}</b>${x[0]}`;b.onclick=()=>select(b,i);$("options").appendChild(b)})
+}
+function select(btn,i){document.querySelectorAll(".option").forEach(x=>x.classList.remove("selected"));btn.classList.add("selected");answers[current]=i;$("next").disabled=false}
+function nextQuestion(){
+ const chosen=questions[current].a[answers[current]];
+ chosen.slice(1).forEach(t=>scores[t]=(scores[t]||0)+1);
+ current++;
+ if(current<questions.length)renderQuestion(); else showResult();
+}
+function showResult(){
+ $("bar").style.width="100%";$("quiz").classList.remove("active");$("result").classList.add("active");
+ const vals=traits.map(t=>({ ...t,score:Math.round(((scores[t.name]||0)/4)*100)}));
+ vals.forEach(v=>v.score=Math.min(100,Math.max(25,v.score)));
+ const sorted=[...vals].sort((a,b)=>b.score-a.score);
+ $("resultLead").textContent=`Ваш профиль сочетает ${sorted[0].name.toLowerCase()}, ${sorted[1].name.toLowerCase()} и ${sorted[2].name.toLowerCase()}. Посмотрите, какие качества особенно ярко проявились в ваших ответах.`;
+ drawRadar(vals); renderStrengths(sorted); 
+ $("message").innerHTML=`<strong>${sorted[0].icon} Ваша яркая сторона — ${sorted[0].name}!</strong><br>${sorted[0].desc}<br><br><strong>А ещё:</strong> ${sorted[1].desc}`;
+}
+function drawRadar(vals){
+ const grid=$("radarGrid"), area=$("radarArea"), labels=$("radarLabels");grid.innerHTML="";area.innerHTML="";labels.innerHTML="";
+ const cx=350,cy=350,R=225,N=6, pts=[];
+ const p=(r,i)=>{let a=-Math.PI/2+i*2*Math.PI/N;return [cx+Math.cos(a)*r,cy+Math.sin(a)*r]};
+ for(let level=1;level<=3;level++){const ps=Array.from({length:N},(_,i)=>p(R*level/3,i));let poly=document.createElementNS("http://www.w3.org/2000/svg","polygon");poly.setAttribute("class","grid");poly.setAttribute("points",ps.map(x=>x.join(",")).join(" "));grid.appendChild(poly)}
+ for(let i=0;i<N;i++){let q=p(R,i),ln=document.createElementNS("http://www.w3.org/2000/svg","line");ln.setAttribute("class","axis");ln.setAttribute("x1",cx);ln.setAttribute("y1",cy);ln.setAttribute("x2",q[0]);ln.setAttribute("y2",q[1]);grid.appendChild(ln)}
+ vals.forEach((v,i)=>{let q=p(R*(v.score/100),i);pts.push(q);let d=document.createElementNS("http://www.w3.org/2000/svg","circle");d.setAttribute("class","dot");d.setAttribute("cx",q[0]);d.setAttribute("cy",q[1]);d.setAttribute("r",8);d.style.animationDelay=(.45+i*.1)+"s";area.appendChild(d);
+ let l=p(R+62,i),t=document.createElementNS("http://www.w3.org/2000/svg","text");t.setAttribute("class","label");t.setAttribute("x",l[0]);t.setAttribute("y",l[1]);t.setAttribute("text-anchor",Math.abs(l[0]-cx)<25?"middle":l[0]<cx?"end":"start");t.textContent=v.icon+" "+v.name;labels.appendChild(t);
+ let z=p(R+84,i),tt=document.createElementNS("http://www.w3.org/2000/svg","text");tt.setAttribute("class","value");tt.setAttribute("x",z[0]);tt.setAttribute("y",z[1]);tt.setAttribute("text-anchor",Math.abs(z[0]-cx)<25?"middle":z[0]<cx?"end":"start");tt.textContent=v.score+"%";labels.appendChild(tt)});
+ let poly=document.createElementNS("http://www.w3.org/2000/svg","polygon");poly.setAttribute("class","area");poly.setAttribute("points",pts.map(x=>x.join(",")).join(" "));area.insertBefore(poly,area.firstChild);
+ let c=document.createElementNS("http://www.w3.org/2000/svg","circle");c.setAttribute("class","center");c.setAttribute("cx",cx);c.setAttribute("cy",cy);c.setAttribute("r",66);labels.appendChild(c);
+ [["УНИКАЛЬНЫЙ",346,"centerTitle"],["УЧИТЕЛЬ",365,"centerTitle"],["ваш стиль",386,"centerSmall"]].forEach(x=>{let t=document.createElementNS("http://www.w3.org/2000/svg","text");t.setAttribute("class",x[2]);t.setAttribute("x",cx);t.setAttribute("y",x[1]);t.setAttribute("text-anchor","middle");t.textContent=x[0];labels.appendChild(t)})
+}
+function renderStrengths(sorted){
+ $("strengths").innerHTML=sorted.map(v=>`<div class="strength"><strong><span>${v.icon} ${v.name}</span><span>${v.score}%</span></strong><div class="meter"><i style="width:${v.score}%"></i></div></div>`).join("");
+}
+function restart(){$("result").classList.remove("active");startQuiz()}
+function celebrate(){
+ const btn=$("greetingBtn");
+ if(btn){btn.style.display="none";}
+ setTimeout(()=>$("greetingOverlay").classList.add("show"),420);
+ for(let i=0;i<100;i++){
+   const s=document.createElement("span");
+   s.textContent=["✦","•","✧","🌸"][Math.floor(Math.random()*4)];
+   s.style.cssText=`position:fixed;left:${50+Math.random()*18-9}%;top:58%;z-index:1100;pointer-events:none;color:${["#9870df","#e5ad59","#e995b4","#79b9df"][Math.floor(Math.random()*4)]};font-size:${10+Math.random()*18}px;transition:1.5s cubic-bezier(.2,.8,.2,1)`;
+   document.body.appendChild(s);
+   requestAnimationFrame(()=>{
+     s.style.transform=`translate(${(Math.random()-.5)*800}px,${-150-Math.random()*550}px) rotate(${Math.random()*720}deg)`;
+     s.style.opacity=0
+   });
+   setTimeout(()=>s.remove(),1600)
+ }
+}
+
+
+function closeGreeting(){$("greetingOverlay").classList.remove("show")}
+function restartFromGreeting(){
+  closeGreeting();
+  $("result").classList.remove("active");
+  $("start").classList.add("active");
+  $("greetingBtn").style.display="";
+}
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeGreeting()});
+document.getElementById("greetingOverlay").addEventListener("click",e=>{
+  if(e.target.id==="greetingOverlay")closeGreeting();
+});
+
+</script>
+</body>
+</html>
